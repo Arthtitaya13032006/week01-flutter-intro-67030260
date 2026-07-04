@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/ai_chat_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,12 +35,11 @@ class ProfilePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
               const SizedBox(height: 20),
 
-              // รูปโปรไฟล์
               const CircleAvatar(
                 radius: 60,
                 backgroundColor: Colors.orange,
@@ -52,7 +52,6 @@ class ProfilePage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              // ชื่อ
               const Text(
                 'Arthittaya Phiokham',
                 style: TextStyle(
@@ -63,7 +62,6 @@ class ProfilePage extends StatelessWidget {
 
               const SizedBox(height: 8),
 
-              // รหัสนักศึกษา
               const Text(
                 'รหัสนักศึกษา : 67030260',
                 style: TextStyle(
@@ -86,28 +84,24 @@ class ProfilePage extends StatelessWidget {
                         'ครุศาสตร์อุตสาหกรรมและเทคโนโลยี',
                       ),
                       const Divider(),
-
                       _buildInfoRow(
                         Icons.computer,
                         'สาขา',
                         'เทคโนโลยีคอมพิวเตอร์',
                       ),
                       const Divider(),
-
                       _buildInfoRow(
                         Icons.code,
                         'วิชาที่ชอบ',
                         'Mobile Application Development',
                       ),
                       const Divider(),
-
                       _buildInfoRow(
                         Icons.favorite,
                         'งานอดิเรก',
                         'เขียนโปรแกรมและเรียนรู้เทคโนโลยี',
                       ),
                       const Divider(),
-
                       _buildInfoRow(
                         Icons.flag,
                         'เป้าหมาย',
@@ -117,6 +111,21 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
               ),
+
+              const SizedBox(height: 20),
+
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const AiChatPage(),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.smart_toy),
+                label: const Text("ทดลอง AI Chat"),
+              ),
             ],
           ),
         ),
@@ -124,7 +133,8 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(IconData icon, String label, String value) {
+  static Widget _buildInfoRow(
+      IconData icon, String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
@@ -140,10 +150,7 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Text(
-              value,
-              style: const TextStyle(fontSize: 16),
-            ),
+            child: Text(value),
           ),
         ],
       ),
